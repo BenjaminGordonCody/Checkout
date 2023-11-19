@@ -37,6 +37,14 @@ namespace Tests
             Assert.Equal("Price List is not formatted correctly.", exception.Message);
         }
 
+        [Fact]
+        public void Checkout_Scan_UnknownSkuThrowsError()
+        {
+            var sut = new Checkout.Checkout(MockData.CurrentPrice());
+            var exception = Record.Exception(() => sut.Scan("UnknownSku"));
+            Assert.NotNull(exception);
+            Assert.Equal("Checkout does not recognise the scanned SKU", exception.Message);
+        }
 
     }
 }
