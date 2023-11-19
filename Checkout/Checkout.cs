@@ -10,14 +10,15 @@ namespace Checkout
     {
         public Checkout(Dictionary<string, Price> priceList)
         {
-            if(priceList.Count == 0)
+            if (priceList.Count == 0)
             {
                 throw new ArgumentException("Price List is empty.");
 
             }
             foreach (var price in priceList.Values)
             {
-                if(!IsValidPrice(price)) {
+                if (!IsValidPrice(price))
+                {
                     throw new ArgumentException("Price List is not formatted correctly.");
                 }
             }
@@ -25,17 +26,27 @@ namespace Checkout
             PriceList = priceList;
         }
 
-        public int GetTotalPrice()
+        public float GetTotalPrice()
         {
-            throw new NotImplementedException();
+            float totalPrice = 0;
+            foreach (var sku in ScannedSkus)
+            {
+                totalPrice = totalPrice + sku.Value * PriceList[sku.Key].SinglePrice;
+            }
+            return totalPrice;
         }
 
         public void Scan(string item)
         {
-            if (!PriceList.ContainsKey(item)){
+            if (!PriceList.ContainsKey(item))
+            {
                 throw new ArgumentException("Checkout does not recognise the scanned SKU");
             }
-
+            if(ScannedSkus.ContainsKey(item))
+            {
+                ScannedSkus[item] += 1;
+            }
+            else { ScannedSkus.Add(item, 1); }
         }
 
         private Dictionary<string, Price> PriceList;
