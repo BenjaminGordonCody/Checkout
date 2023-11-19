@@ -97,3 +97,6 @@ C:\Users\Benjamin\source\repos\Checkout\Tests\obj\Debug\net6.0\refint\Tests.dll
 C:\Users\Benjamin\source\repos\Checkout\Tests\obj\Debug\net6.0\Tests.pdb
 C:\Users\Benjamin\source\repos\Checkout\Tests\obj\Debug\net6.0\Tests.genruntimeconfig.cache
 C:\Users\Benjamin\source\repos\Checkout\Tests\obj\Debug\net6.0\ref\Tests.dll
+C:\Users\Benjamin\source\repos\Checkout\Tests\bin\Debug\net6.0\CoverletSourceRootsMapping
+C:\Users\Benjamin\source\repos\Checkout\Tests\bin\Debug\net6.0\Checkout.dll
+C:\Users\Benjamin\source\repos\Checkout\Tests\bin\Debug\net6.0\Checkout.pdb
