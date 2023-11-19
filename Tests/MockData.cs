@@ -1,4 +1,4 @@
-﻿using Checkout;
+﻿using Checkouts;
 
 namespace CheckoutTests
 {

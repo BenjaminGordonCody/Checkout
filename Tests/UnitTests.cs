@@ -1,3 +1,5 @@
+using Checkout = Checkouts.Checkout;
+
 namespace CheckoutTests
 {
 
@@ -6,14 +8,14 @@ namespace CheckoutTests
         [Fact]
         public void Checkout_Init_ExpectedInputThrowsNoErrors()
         {
-            var exception = Record.Exception(() => new Checkout.Checkout(MockData.CurrentPrice()));
+            var exception = Record.Exception(() => new Checkout(MockData.CurrentPrice()));
             Assert.Null(exception);
         }
 
         [Fact]
         public void Checkout_Init_EmptyPriceInputThrowsErrors()
         {
-            var exception = Record.Exception(() => new Checkout.Checkout(MockData.EmptyPrice));
+            var exception = Record.Exception(() => new Checkout(MockData.EmptyPrice));
             Assert.NotNull(exception);
             Assert.Equal("Price List is empty.", exception.Message);
         }
@@ -21,7 +23,7 @@ namespace CheckoutTests
         [Fact]
         public void Checkout_Init_PriceInputWithMultiplierButNoSpecialPriceThrowsErrors()
         {
-            var exception = Record.Exception(() => new Checkout.Checkout(MockData.PriceWithMultiplierButNoSpecialPrice));
+            var exception = Record.Exception(() => new Checkout(MockData.PriceWithMultiplierButNoSpecialPrice));
             Assert.NotNull(exception);
             Assert.Equal("Price List is not formatted correctly.", exception.Message);
 
@@ -30,7 +32,7 @@ namespace CheckoutTests
         [Fact]
         public void Checkout_Init_PrinceInputWithSpecialPriceButNoMultiplier()
         {
-            var exception = Record.Exception(() => new Checkout.Checkout(MockData.PriceWithSpecialPriceButNoMultiplier));
+            var exception = Record.Exception(() => new Checkout(MockData.PriceWithSpecialPriceButNoMultiplier));
             Assert.NotNull(exception);
             Assert.Equal("Price List is not formatted correctly.", exception.Message);
         }
@@ -38,7 +40,7 @@ namespace CheckoutTests
         [Fact]
         public void Checkout_Scan_UnknownSkuThrowsError()
         {
-            var sut = new Checkout.Checkout(MockData.CurrentPrice());
+            var sut = new Checkout(MockData.CurrentPrice());
             var exception = Record.Exception(() => sut.Scan("UnknownSku"));
             Assert.NotNull(exception);
             Assert.Equal("Checkout does not recognise the scanned SKU", exception.Message);
@@ -47,7 +49,7 @@ namespace CheckoutTests
         [Fact]
         public void Checkout_GetTotalPrice_BasicPricesOnly()
         {
-            var sut = new Checkout.Checkout(MockData.CurrentPrice());
+            var sut = new Checkout(MockData.CurrentPrice());
             var items = new string[] { "A", "B", "C", "D" };
             foreach (var sku in items)
             {
@@ -60,7 +62,7 @@ namespace CheckoutTests
         [Fact]
         public void Checkout_MultipleScans_BasicPricesOnly()
         {
-            var sut = new Checkout.Checkout(MockData.CurrentPrice());
+            var sut = new Checkout(MockData.CurrentPrice());
             var items = new string[] { "A", "C", "D", "A", "C", "D" };
             foreach (var sku in items)
             {
@@ -73,7 +75,7 @@ namespace CheckoutTests
         [Fact]
         public void Checkout_GetTotalPrice_4ScansPerSku_SpecialPrices()
         {
-            var sut = new Checkout.Checkout(MockData.CurrentPrice());
+            var sut = new Checkout(MockData.CurrentPrice());
             var items = new string[] { "A", "B", "C", "D" };
 
             for (int i = 0; i < 4; i++)
@@ -97,7 +99,7 @@ namespace CheckoutTests
         [Fact]
         public void Checkout_GetTotalPrice_3ScansPerSku_SpecialPrices()
         {
-            var sut = new Checkout.Checkout(MockData.CurrentPrice());
+            var sut = new Checkout(MockData.CurrentPrice());
             var items = new string[] { "A", "B", "C", "D" };
 
             for (int i = 0; i < 3; i++)

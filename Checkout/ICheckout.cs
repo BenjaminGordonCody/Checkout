@@ -1,4 +1,4 @@
-﻿namespace Checkout
+﻿namespace Checkouts
 {
     interface ICheckout
     {

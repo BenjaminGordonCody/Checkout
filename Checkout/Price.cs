@@ -1,4 +1,4 @@
-﻿namespace Checkout
+﻿namespace Checkouts
 {
     public class Price
     {
@@ -11,15 +11,15 @@
 
         public float CostOf(int purchased)
         {
-            if (SpecialPriceMultiplier != null && SpecialPrice != null)
+            if (SpecialPriceMultiplier == null || SpecialPrice == null)
             {
-                int standardPricePurchases = (int)(purchased % SpecialPriceMultiplier);
-                float standardPricePurchaseCost = standardPricePurchases * SinglePrice;
-                float specialPricePurchases = (float)((purchased - standardPricePurchases) / SpecialPriceMultiplier);
-                float specialPurchasesCost = (float)(specialPricePurchases * SpecialPrice);
-                return standardPricePurchaseCost + specialPurchasesCost;
+                return SinglePrice * purchased;
             }
-            return SinglePrice * purchased;
+            int standardPricePurchases = (int)(purchased % SpecialPriceMultiplier);
+            float standardPricePurchaseCost = standardPricePurchases * SinglePrice;
+            float specialPricePurchases = (float)((purchased - standardPricePurchases) / SpecialPriceMultiplier);
+            float specialPurchasesCost = (float)(specialPricePurchases * SpecialPrice);
+            return standardPricePurchaseCost + specialPurchasesCost;
         }
 
         public float SinglePrice { get; }
