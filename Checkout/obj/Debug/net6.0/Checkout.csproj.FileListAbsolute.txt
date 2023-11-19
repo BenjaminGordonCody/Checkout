@@ -1,0 +1,11 @@
+C:\Users\Benjamin\source\repos\Checkout\Checkout\bin\Debug\net6.0\Checkout.deps.json
+C:\Users\Benjamin\source\repos\Checkout\Checkout\bin\Debug\net6.0\Checkout.dll
+C:\Users\Benjamin\source\repos\Checkout\Checkout\bin\Debug\net6.0\Checkout.pdb
+C:\Users\Benjamin\source\repos\Checkout\Checkout\obj\Debug\net6.0\Checkout.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Benjamin\source\repos\Checkout\Checkout\obj\Debug\net6.0\Checkout.AssemblyInfoInputs.cache
+C:\Users\Benjamin\source\repos\Checkout\Checkout\obj\Debug\net6.0\Checkout.AssemblyInfo.cs
+C:\Users\Benjamin\source\repos\Checkout\Checkout\obj\Debug\net6.0\Checkout.csproj.CoreCompileInputs.cache
+C:\Users\Benjamin\source\repos\Checkout\Checkout\obj\Debug\net6.0\Checkout.dll
+C:\Users\Benjamin\source\repos\Checkout\Checkout\obj\Debug\net6.0\refint\Checkout.dll
+C:\Users\Benjamin\source\repos\Checkout\Checkout\obj\Debug\net6.0\Checkout.pdb
+C:\Users\Benjamin\source\repos\Checkout\Checkout\obj\Debug\net6.0\ref\Checkout.dll
