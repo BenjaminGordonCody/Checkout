@@ -8,6 +8,11 @@ namespace Checkout
 {
     public class Checkout : ICheckout
     {
+        public Checkout(Dictionary<string, Price> priceList)
+        {
+            PriceList = priceList;
+        }
+
         public int GetTotalPrice()
         {
             throw new NotImplementedException();
@@ -17,5 +22,7 @@ namespace Checkout
         {
             throw new NotImplementedException();
         }
+
+        private Dictionary<string, Price> PriceList;
     }
 }
