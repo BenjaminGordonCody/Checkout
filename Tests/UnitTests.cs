@@ -1,6 +1,4 @@
-using Checkout;
-
-namespace Tests
+namespace CheckoutTests
 {
 
     public class UnitTests
@@ -73,7 +71,7 @@ namespace Tests
         }
 
         [Fact]
-        public void Checkout_MultipleScans_SpecialPrices()
+        public void Checkout_GetTotalPrice_4ScansPerSku_SpecialPrices()
         {
             var sut = new Checkout.Checkout(MockData.CurrentPrice());
             var items = new string[] { "A", "B", "C", "D" };
@@ -90,7 +88,31 @@ namespace Tests
             float expectedPriceB = 90;
             float expectedPriceC = 80;
             float expectedPriceD = 60;
-            
+
+            float expectedTotal = expectedPriceA + expectedPriceB + expectedPriceC + expectedPriceD;
+            var totalPrice = sut.GetTotalPrice();
+            Assert.Equal(expectedTotal, totalPrice);
+        }
+
+        [Fact]
+        public void Checkout_GetTotalPrice_3ScansPerSku_SpecialPrices()
+        {
+            var sut = new Checkout.Checkout(MockData.CurrentPrice());
+            var items = new string[] { "A", "B", "C", "D" };
+
+            for (int i = 0; i < 3; i++)
+            {
+                foreach (var sku in items)
+                {
+                    sut.Scan(sku);
+                }
+            }
+
+            float expectedPriceA = 130;
+            float expectedPriceB = 45 + 30;
+            float expectedPriceC = 60;
+            float expectedPriceD = 45;
+
             float expectedTotal = expectedPriceA + expectedPriceB + expectedPriceC + expectedPriceD;
             var totalPrice = sut.GetTotalPrice();
             Assert.Equal(expectedTotal, totalPrice);

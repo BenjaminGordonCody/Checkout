@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Checkout
+﻿namespace Checkout
 {
     public class Checkout : ICheckout
     {
@@ -42,21 +36,21 @@ namespace Checkout
             {
                 throw new ArgumentException("Checkout does not recognise the scanned SKU");
             }
-            if(ScannedSkus.ContainsKey(item))
+            if (ScannedSkus.ContainsKey(item))
             {
                 ScannedSkus[item] += 1;
             }
             else { ScannedSkus.Add(item, 1); }
         }
 
-        private Dictionary<string, Price> PriceList;
+        private readonly Dictionary<string, Price> PriceList;
 
         private static bool IsValidPrice(Price price)
         {
             return (price.SpecialPrice == null) == (price.SpecialPriceMultiplier == null);
         }
 
-        private Dictionary<string, int> ScannedSkus = new();
+        private readonly Dictionary<string, int> ScannedSkus = new();
 
     }
 }
