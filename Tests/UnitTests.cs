@@ -2,7 +2,7 @@ using Checkout;
 
 namespace Tests
 {
-    
+
     public class UnitTests
     {
         [Fact]
@@ -17,6 +17,7 @@ namespace Tests
         {
             var exception = Record.Exception(() => new Checkout.Checkout(MockData.EmptyPrice));
             Assert.NotNull(exception);
+            Assert.Equal("Price List is empty.", exception.Message);
         }
 
         [Fact]
@@ -24,6 +25,8 @@ namespace Tests
         {
             var exception = Record.Exception(() => new Checkout.Checkout(MockData.PriceWithMultiplierButNoSpecialPrice));
             Assert.NotNull(exception);
+            Assert.Equal("Price List is not formatted correctly.", exception.Message);
+
         }
 
         [Fact]
@@ -31,6 +34,9 @@ namespace Tests
         {
             var exception = Record.Exception(() => new Checkout.Checkout(MockData.PriceWithSpecialPriceButNoMultiplier));
             Assert.NotNull(exception);
+            Assert.Equal("Price List is not formatted correctly.", exception.Message);
         }
+
+
     }
 }

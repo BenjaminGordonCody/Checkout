@@ -10,6 +10,18 @@ namespace Checkout
     {
         public Checkout(Dictionary<string, Price> priceList)
         {
+            if(priceList.Count == 0)
+            {
+                throw new ArgumentException("Price List is empty.");
+
+            }
+            foreach (var price in priceList.Values)
+            {
+                if(!isValidPrice(price)) {
+                    throw new ArgumentException("Price List is not formatted correctly.");
+                }
+            }
+
             PriceList = priceList;
         }
 
@@ -24,5 +36,11 @@ namespace Checkout
         }
 
         private Dictionary<string, Price> PriceList;
+
+        private static bool isValidPrice(Price price)
+        {
+            return (price.SpecialPrice == null) == (price.SpecialPriceMultiplier == null);
+
+        }
     }
 }
