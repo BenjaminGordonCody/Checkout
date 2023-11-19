@@ -31,7 +31,7 @@ namespace Checkout
             float totalPrice = 0;
             foreach (var sku in ScannedSkus)
             {
-                totalPrice = totalPrice + sku.Value * PriceList[sku.Key].SinglePrice;
+                totalPrice += PriceList[sku.Key].CostOf(sku.Value);
             }
             return totalPrice;
         }
@@ -56,7 +56,7 @@ namespace Checkout
             return (price.SpecialPrice == null) == (price.SpecialPriceMultiplier == null);
         }
 
-        private Dictionary<string, int> ScannedSkus = new Dictionary<string, int>();
+        private Dictionary<string, int> ScannedSkus = new();
 
     }
 }

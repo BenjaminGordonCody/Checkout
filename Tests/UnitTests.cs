@@ -50,7 +50,7 @@ namespace Tests
         public void Checkout_GetTotalPrice_BasicPricesOnly()
         {
             var sut = new Checkout.Checkout(MockData.CurrentPrice());
-            var items = new string[]{ "A", "B", "C", "D" };
+            var items = new string[] { "A", "B", "C", "D" };
             foreach (var sku in items)
             {
                 sut.Scan(sku);
@@ -70,6 +70,30 @@ namespace Tests
             }
             var totalPrice = sut.GetTotalPrice();
             Assert.Equal(50 + 20 + 15 + 50 + 20 + 15, totalPrice);
+        }
+
+        [Fact]
+        public void Checkout_MultipleScans_SpecialPrices()
+        {
+            var sut = new Checkout.Checkout(MockData.CurrentPrice());
+            var items = new string[] { "A", "B", "C", "D" };
+
+            for (int i = 0; i < 4; i++)
+            {
+                foreach (var sku in items)
+                {
+                    sut.Scan(sku);
+                }
+            }
+
+            float expectedPriceA = 130 + 50;
+            float expectedPriceB = 90;
+            float expectedPriceC = 80;
+            float expectedPriceD = 60;
+            
+            float expectedTotal = expectedPriceA + expectedPriceB + expectedPriceC + expectedPriceD;
+            var totalPrice = sut.GetTotalPrice();
+            Assert.Equal(expectedTotal, totalPrice);
         }
     }
 }
