@@ -17,7 +17,7 @@ namespace Checkout
             }
             foreach (var price in priceList.Values)
             {
-                if(!isValidPrice(price)) {
+                if(!IsValidPrice(price)) {
                     throw new ArgumentException("Price List is not formatted correctly.");
                 }
             }
@@ -32,15 +32,20 @@ namespace Checkout
 
         public void Scan(string item)
         {
-            throw new NotImplementedException();
+            if (!PriceList.ContainsKey(item)){
+                throw new ArgumentException("Checkout does not recognise the scanned SKU");
+            }
+
         }
 
         private Dictionary<string, Price> PriceList;
 
-        private static bool isValidPrice(Price price)
+        private static bool IsValidPrice(Price price)
         {
             return (price.SpecialPrice == null) == (price.SpecialPriceMultiplier == null);
-
         }
+
+        private Dictionary<string, int> ScannedSkus = new Dictionary<string, int>();
+
     }
 }
